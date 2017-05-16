@@ -1,0 +1,90 @@
+<div class="col-md-3">
+    <h2 class="wb-inv">Filtering Options</h2>
+    <div class="panel panel-default">
+        <header class="panel-heading">
+            <h3 class="h4 mrgn-tp-0 mrgn-bttm-0">Filter your search results</h3>
+        </header>
+        <div class="panel-body">
+            <p class="mrgn-tp-md">Use the filters below to narrow your search results.</p>
+            <form class="wb-tables-filter" data-bind-to="dataset-filter">
+                <div class="form-group">
+                    <label for="dt_sector">Trade sector</label>
+                    <select class="form-control" id="dt_sector" name="dt_sector" data-column="0">
+        							<option value="Retail food" selected>Retail food</option>
+        							<option value="Retail petroleum">Retail petroleum</option>
+        						</select>
+                </div>
+                <div class="form-group">
+                    <label for="dt_year">Year</label>
+                    <select class="form-control" id="dt_year" name="dt_year" data-column="1">
+        							<option value="2010">2010</option>
+        							<option value="2011">2011</option>
+        							<option value="2012">2012</option>
+        							<option value="2013">2013</option>
+        							<option value="2014">2014</option>
+        							<option value="2015" selected>2015</option>
+        						</select>
+                </div>
+                <div class="form-group">
+                    <label for="dt_province">Province / territory</label>
+                    <select class="form-control" id="dt_province" name="dt_province" data-column="2">
+        							<option value="" selected>National</option>
+        							<option value="Alberta">Alberta</option>
+        							<option value="British Columbia">British Columbia</option>
+        							<option value="Manitoba">Manitoba</option>
+        							<option value="New Brunswick">New Brunswick</option>
+        							<option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
+        							<option value="Northwest Territories">Northwest Territories</option>
+        							<option value="Nova Scotia">Nova Scotia</option>
+        							<option value="Nunavut">Nunavut</option>
+        							<option value="Ontario">Ontario</option>
+        							<option value="Prince Edward Island">Prince Edward Island</option>
+        							<option value="Quebec">Quebec</option>
+        							<option value="Saskatchewan">Saskatchewan</option>
+        							<option value="Yukon">Yukon</option>
+        						</select>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <button type="submit" class="btn btn-primary" aria-controls="dataset-filter">Filter</button>
+                    </div>
+                    <div class="col-xs-6">
+                        <button type="reset" class="btn btn-default pull-right">Clear</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<section class="chart--bg">
+    <div class="charts--container">
+        <div class="chart">
+            <h2 class="mrgn-tp-0 text-center"></h2>
+            <h3 class="mrgn-tp-sm text-center h4"></h3>
+            <div id="pieChart">
+                <svg id="pieChartSVG">
+                    <defs>
+                        <filter id="pieChartInsetShadow">
+                            <feOffset dx="0" dy="0" />
+                            <feGaussianBlur stdDeviation="3" result="offset-blur" />
+                            <feComposite operator="out" in="SourceGraphic" in2="offset-blur" result="inverse" />
+                            <feFlood flood-color="black" flood-opacity="1" result="color" />
+                            <feComposite operator="in" in="color" in2="inverse" result="shadow" />
+                            <feComposite operator="over" in="shadow" in2="SourceGraphic" />
+                        </filter>
+                        <filter id="pieChartDropShadow">
+                            <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="blur" />
+                            <feOffset in="blur" dx="0" dy="3" result="offsetBlur" />
+                            <feMerge>
+                                <feMergeNode />
+                                <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                        </filter>
+                    </defs>
+                </svg>
+            </div>
+            <p class="chart--desc col-xs-12"></p>
+        </div>
+    </div>
+</section>
+            
