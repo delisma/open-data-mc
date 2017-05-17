@@ -1,0 +1,86 @@
+.chart--bg ul {
+  list-style: none;
+}
+.chart--bg ul, .chart--bg li {
+  margin: 0;
+  padding: 0.5em;
+}
+.chart {
+  min-height: 480px;
+  /*border-bottom: 1px solid #eee;*/
+  padding: 1em;
+}
+.chart--bg {
+  font-size: 14px;
+  font-family: sans-serif;
+  font-weight: 100;
+  background-color: #ccc;
+  background-image: linear-gradient(transparent 50%, rgba(255, 255, 255, 0.5) 25%);
+  background-size: 4px 4px;
+}
+.charts--container {
+  background-color: #fff;
+  width: 100%;
+}
+@media screen and (min-width: 700px) {
+.chart--bg {
+  margin: 1.1em 0 0 0;
+  padding: 0.01em 0px;
+}
+.charts--container {
+  max-width: 700px;
+  left: 50%;
+  top: 10%;
+  box-shadow: 0 2em 2em #333;
+  margin: 5em auto;
+}
+}
+.charts--headline {
+  text-align: center;
+  color: #444;
+  background-color: #fff;
+  padding: 1em;
+}
+.pieChart--center--innerCircle {
+  fill: #fff;
+}
+.pieChart--center--text {
+  font-size: 28px;
+}
+.pieChart--center--outerCircle {
+  fill: rgba(255, 255, 255, 0.75);
+}
+.pieChart--detail--divider {
+  stroke: gray;
+  stroke-width: 1;
+}
+.pieChart--detail--percentage {
+  font-size: 42px;
+  font-weight: 100;
+  fill: #333;
+  stroke-width: 1px;
+}
+.pieChart--detail--textContainer {
+  background-color: transparent;
+  padding: 10px 0 0 0;
+  margin: 0;
+  color: #666;
+  font-style: italic;
+}
+.pieChart--detail__left {
+  text-align: left;
+}
+.pieChart--detail__right {
+  text-align: right;
+}
+.pieChart__blue {
+  fill: #2572B4;
+}
+.pieChart__yellow {
+  fill: #FFCA26;
+}
+table.dataTable tfoot td, table.dataTable tfoot th, table.dataTable thead td, table.dataTable thead th {
+  border-bottom: 1px solid #111;
+  border-top: 1px solid #111;
+  font-weight: bold
+}

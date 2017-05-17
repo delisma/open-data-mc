@@ -6,7 +6,7 @@
  * @author @jeresiv
  */
 /*jshint scripturl:true*/
-$(document).on("wb-updated.wb-tables", ".wb-tables", function(event, settings) {
+$(document).on("wb-ready.wb", function(event) {
 	"use strict";
 	var api;
 	var svgHeight;
@@ -14,7 +14,6 @@ $(document).on("wb-updated.wb-tables", ".wb-tables", function(event, settings) {
 	var $trade;
 	var $year;
 	var $region;
-	var counter = 0;
 
 	// the state machine
 	var state = {
@@ -285,7 +284,7 @@ $(document).on("wb-updated.wb-tables", ".wb-tables", function(event, settings) {
 		"use strict";
 		api = $(".wb-tables").dataTable().api();
 		$("#filter-options").html(render(state));
-		$("#chart-ui").html(state.pieChart);
+		$("#chart-ui").html(state.pieChart.toString());
 		$trade = $("#filter-options").find("select:eq(0)");
 		$year = $("#filter-options").find("select:eq(1)");
 		$region = $("#filter-options").find("select:eq(2)");
@@ -301,26 +300,14 @@ $(document).on("wb-updated.wb-tables", ".wb-tables", function(event, settings) {
 		state.chartDesc = state[state.lang].tradeDesc[$($trade).val().trim()];
 		updateUI();
 
-		// $($trade).on("change", function() {
-		// 	// state changes here
-		// 	state.chartH2 = this.value.trim();
-		// 	state.wbtablesCaption = state[state.lang].compliance + " (" + this.value.trim() + " " + $($year).val().trim() + ")";
-		// 	state.chartDesc = state[state.lang].tradeDesc[this.value.trim()];
-		// 	updateUI();
-		// });
-		// $($year).on("change", function() {
-		// 	// state changes here
-		// 	state.chartH3 = $($region).find("option:selected").html().trim() + " (" + this.value.trim() + ")";
-		// 	state.wbtablesCaption = state[state.lang].compliance + " (" + $($trade).val().trim() + " " + this.value.trim() + ")";
-		// 	updateUI();
-		// });
-		// $($region).on("change", function() {
-		// 	// state changes here
-		// 	state.chartH3 = $($region).find("option:selected").html().trim() + " (" + $($year).val().trim() + ")";
-		// 	updateUI();
-		// });
+		$("#filter-options button[type='submit']").on("click", function() {
+			// state changes here
+			state.chartH2 = $trade.val().trim();
+			state.chartH3 = $($region).find("option:selected").html().trim() + " (" + $($year).val().trim() + ")";
+			state.wbtablesCaption = state[state.lang].compliance + " (" + $($trade).val().trim() + " " + $($year).val().trim() + ")";
+			state.chartDesc = state[state.lang].tradeDesc[$trade.val().trim()];
+			updateUI();
+		});
 	};
-	counter++;
-	console.log(counter);
 	initUI();
 });
