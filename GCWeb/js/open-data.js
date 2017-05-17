@@ -14,6 +14,7 @@ $(document).on("wb-updated.wb-tables", ".wb-tables", function(event, settings) {
 	var $trade;
 	var $year;
 	var $region;
+	var counter = 0;
 
 	// the state machine
 	var state = {
@@ -256,7 +257,7 @@ $(document).on("wb-updated.wb-tables", ".wb-tables", function(event, settings) {
 		var b = graphData().accurate;
 		var y = graphData().inaccurate;
 		var region = $($region).find("option:selected").html().trim();
-		//api.search($($trade).val().trim() + " " + $($year).val().trim()).draw();
+		api.search($($trade).val().trim() + " " + $($year).val().trim()).draw();
 		$(".wb-tables td, .wb-tables th").removeClass("bg-info");
 		if ($($region).val() !== "") {
 			$("tr:contains(" + region + ") td, tr:contains(" + region + ") th").addClass("bg-info");
@@ -284,7 +285,7 @@ $(document).on("wb-updated.wb-tables", ".wb-tables", function(event, settings) {
 		"use strict";
 		api = $(".wb-tables").dataTable().api();
 		$("#filter-options").html(render(state));
-		$("#chart-ui").append(state.pieChart);
+		$("#chart-ui").html(state.pieChart);
 		$trade = $("#filter-options").find("select:eq(0)");
 		$year = $("#filter-options").find("select:eq(1)");
 		$region = $("#filter-options").find("select:eq(2)");
@@ -300,24 +301,26 @@ $(document).on("wb-updated.wb-tables", ".wb-tables", function(event, settings) {
 		state.chartDesc = state[state.lang].tradeDesc[$($trade).val().trim()];
 		updateUI();
 
-		$($trade).on("change", function() {
-			// state changes here
-			state.chartH2 = this.value.trim();
-			state.wbtablesCaption = state[state.lang].compliance + " (" + this.value.trim() + " " + $($year).val().trim() + ")";
-			state.chartDesc = state[state.lang].tradeDesc[this.value.trim()];
-			updateUI();
-		});
-		$($year).on("change", function() {
-			// state changes here
-			state.chartH3 = $($region).find("option:selected").html().trim() + " (" + this.value.trim() + ")";
-			state.wbtablesCaption = state[state.lang].compliance + " (" + $($trade).val().trim() + " " + this.value.trim() + ")";
-			updateUI();
-		});
-		$($region).on("change", function() {
-			// state changes here
-			state.chartH3 = $($region).find("option:selected").html().trim() + " (" + $($year).val().trim() + ")";
-			updateUI();
-		});
+		// $($trade).on("change", function() {
+		// 	// state changes here
+		// 	state.chartH2 = this.value.trim();
+		// 	state.wbtablesCaption = state[state.lang].compliance + " (" + this.value.trim() + " " + $($year).val().trim() + ")";
+		// 	state.chartDesc = state[state.lang].tradeDesc[this.value.trim()];
+		// 	updateUI();
+		// });
+		// $($year).on("change", function() {
+		// 	// state changes here
+		// 	state.chartH3 = $($region).find("option:selected").html().trim() + " (" + this.value.trim() + ")";
+		// 	state.wbtablesCaption = state[state.lang].compliance + " (" + $($trade).val().trim() + " " + this.value.trim() + ")";
+		// 	updateUI();
+		// });
+		// $($region).on("change", function() {
+		// 	// state changes here
+		// 	state.chartH3 = $($region).find("option:selected").html().trim() + " (" + $($year).val().trim() + ")";
+		// 	updateUI();
+		// });
 	};
-	//initUI();
+	counter++;
+	console.log(counter);
+	initUI();
 });
